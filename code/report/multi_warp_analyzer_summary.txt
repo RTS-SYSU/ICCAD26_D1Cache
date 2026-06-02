@@ -1,0 +1,5 @@
+Multi-Warp WCET Analysis Report
+Warp Number: 32, block size: 256
+Total Accesses: 786496
+Multi warp Hits: 785760 (99.91%)
+Multi warp Misses: 736 (0.09%)
