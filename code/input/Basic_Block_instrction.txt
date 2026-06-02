@@ -1,0 +1,56 @@
+bb_00	: ld.param.u64 %rd10, [_Z6Match1PKfS0_PfPii_param_0];
+bb_00	: ld.param.u64 %rd11, [_Z6Match1PKfS0_PfPii_param_1];
+bb_00	: ld.param.u64 %rd12, [_Z6Match1PKfS0_PfPii_param_2];
+bb_00	: ld.param.u64 %rd13, [_Z6Match1PKfS0_PfPii_param_3];
+bb_00	: ld.param.u32 %r10, [_Z6Match1PKfS0_PfPii_param_4];
+bb_00	: cvta.to.global.u64 %rd1, %rd11;
+bb_00	: cvta.to.global.u64 %rd2, %rd13;
+bb_00	: cvta.to.global.u64 %rd3, %rd12;
+bb_00	: mov.u32 %r11, %ctaid.x;
+bb_00	: mov.u32 %r12, %ntid.x;
+bb_00	: mov.u32 %r13, %tid.x;
+bb_00	: mad.lo.s32 %r1, %r11, %r12, %r13;
+bb_00	: mul.lo.s32 %r14, %r10, %r1;
+bb_00	: cvta.to.global.u64 %rd14, %rd10;
+bb_00	: mul.wide.s32 %rd15, %r14, 4;
+bb_00	: add.s64 %rd4, %rd14, %rd15;
+bb_00	: mov.f32 %f7, 0f00000000;
+bb_00	: mov.u32 %r18, -1;
+bb_00	: mov.u32 %r17, 0;
+bb_00	: mov.f32 %f9, %f7;
+
+bb_01	: BB0_1;
+bb_01	: shl.b32 %r16, %r17, 2;
+bb_01	: mul.wide.s32 %rd16, %r16, 4;
+bb_01	: add.s64 %rd21, %rd1, %rd16;
+bb_01	: mov.u32 %r19, -4;
+bb_01	: mov.u64 %rd22, %rd4;
+bb_01	: mov.f32 %f10, %f7;
+
+bb_02	: BB0_2;
+bb_02	: ld.global.nc.f32 %f3, [%rd22];
+bb_02	: bar.sync 0;
+bb_02	: ld.global.nc.f32 %f4, [%rd21];
+bb_02	: bar.sync 0;
+bb_02	: fma.rn.f32 %f10, %f3, %f4, %f10;
+bb_02	: add.s64 %rd22, %rd22, 4;
+bb_02	: add.s64 %rd21, %rd21, 4;
+bb_02	: add.s32 %r19, %r19, 1;
+bb_02	: setp.ne.s32%p1, %r19, 0;
+bb_02	: @%p1 bra BB0_2;
+
+bb_03	: setp.gt.f32%p2, %f10, %f9;
+bb_03	: selp.f32%f9, %f10, %f9, %p2;
+bb_03	: selp.b32%r18, %r17, %r18, %p2;
+bb_03	: add.s32 %r17, %r17, 1;
+bb_03	: setp.lt.s32%p3, %r17, 1024;
+bb_03	: @%p3 bra BB0_1;
+
+bb_04	: mul.wide.s32 %rd17, %r1, 4;
+bb_04	: add.s64 %rd18, %rd3, %rd17;
+bb_04	: st.global.f32 [%rd18], %f9;
+bb_04	: bar.sync 0;
+bb_04	: add.s64 %rd20, %rd2, %rd17;
+bb_04	: st.global.u32 [%rd20], %r18;
+bb_04	: bar.sync 0;
+bb_04	: ret;

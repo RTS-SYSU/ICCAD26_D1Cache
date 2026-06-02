@@ -1,0 +1,16 @@
+-gpgpu_n_clusters 1
+-gpgpu_shader_registers 65536
+-gpgpu_shader_core_pipeline 1024
+-gpgpu_warp_clusters 32
+-gpgpu_cache:dl1 S:4:128:256
+-gridDim.x 4
+-gridDim.y 1
+-blockDim.x 256
+-blockDim.y 1
+
+Val:
+-_Z6Match1PKfS0_PfPii_param_0  uu_0
+-_Z6Match1PKfS0_PfPii_param_1  uu_1
+-_Z6Match1PKfS0_PfPii_param_2  uu_2
+-_Z6Match1PKfS0_PfPii_param_3  uu_3
+-_Z6Match1PKfS0_PfPii_param_4  5
